@@ -9,7 +9,7 @@ class Page extends Model
 {
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['category_id', 'title', 'slug', 'content'];
+    protected $fillable = ['category_id', 'title', 'slug', 'content', 'full_slug'];
 
     protected static function boot()
     {
@@ -19,6 +19,24 @@ class Page extends Model
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }
         });
+    }
+    
+        public function getFullSlugAttribute(): string
+    {
+        $sectionSlug  = $this->category?->section?->slug ?? '';
+        $categorySlug = $this->category?->slug ?? '';
+        $pageSlug     = $this->slug ?? '';
+
+        // Build path dynamically
+        if ($sectionSlug && $categorySlug && $pageSlug) {
+            return "/{$sectionSlug}/{$categorySlug}/{$pageSlug}";
+        }
+
+        if ($categorySlug && $pageSlug) {
+            return "/{$categorySlug}/{$pageSlug}";
+        }
+
+        return "/{$pageSlug}";
     }
 
      public function section()
