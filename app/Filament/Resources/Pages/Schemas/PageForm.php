@@ -34,6 +34,13 @@ class PageForm
                     ->maxLength(255)
                     ->unique(Page::class, 'slug'),
                 
+                Forms\Components\FileUpload::make('image_url')
+                ->label('Page Image')
+                ->image() // ensures only image files
+                ->directory('pages') // uploaded to storage/app/public/pages or S3 bucket depending on config
+                ->disk('s3') // or 'public'
+                ->nullable(),
+              
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
                     ->required()

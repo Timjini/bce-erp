@@ -16,19 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
     
-        //  $this->call([
-        //     // CustomerSeeder::class,
-        //     // CurrencySeeder::class,
-        //     // DestinationSeeder::class,
-        //     // ProgramSeeder::class,
-        //     ContentSeeder::class,
-        // ]);
+         $this->call([
+            ContentSeeder::class,
+        ]);
         
 
-    //     User::factory()->create([
-    //     'name' => 'Test User',
-    //     'email' => 'test@example.com',
-    //     'password' => Hash::make('password'), 
-    // ]);
+        User::factory()->create([
+        'name' => 'Test User',
+        'email' => 'test@example.com',
+        'password' => Hash::make('password'), 
+    ]);
     }
 }
