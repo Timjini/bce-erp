@@ -33,6 +33,12 @@ class PageForm
                     ->required()
                     ->maxLength(255)
                     ->unique(Page::class, 'slug'),
+                
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(Page::class, 'name'),
 
                 // Forms\Components\RichEditor::make('content')
                 // ->label('Content')
