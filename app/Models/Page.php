@@ -9,7 +9,7 @@ class Page extends Model
 {
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['category_id', 'title', 'slug', 'content', 'full_slug', 'image_url'];
+    protected $fillable = ['name', 'category_id', 'title', 'slug', 'content', 'full_slug', 'image_url'];
 
     protected static function boot()
     {

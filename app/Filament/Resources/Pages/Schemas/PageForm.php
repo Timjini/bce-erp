@@ -40,6 +40,12 @@ class PageForm
                 ->directory('pages') // uploaded to storage/app/public/pages or S3 bucket depending on config
                 ->disk('s3') // or 'public'
                 ->nullable(),
+              
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(Page::class, 'name'),
 
                 // Forms\Components\RichEditor::make('content')
                 // ->label('Content')
